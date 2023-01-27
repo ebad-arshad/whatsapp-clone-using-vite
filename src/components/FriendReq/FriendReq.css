@@ -1,0 +1,29 @@
+.friendReq {
+    height: 72px;
+    padding: 9px 16px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100%;
+}
+
+.checkIcon,
+.crossIcon {
+    display: flex;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.crossIcon {
+    font-size: 20px;
+}
+
+.friendReqIcons {
+    border-bottom: 1px solid #202c33;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

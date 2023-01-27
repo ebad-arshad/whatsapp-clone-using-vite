@@ -1,0 +1,51 @@
+.sideBarNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 16px;
+    height: 60px;
+    flex-wrap: wrap;
+    background: #202c33;
+}
+
+.imageCover {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    background: #cfd4d6;
+    font-size: 35px;
+    color: #6a7175;
+}
+
+.imageCover img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.imageCover svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sideBarNavOptions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.sideBarNavOptions div {
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    color: #aebac1;
+}
+
+.sideBarNavOptions div:nth-child(4) {
+    font-size: 16px;
+}
