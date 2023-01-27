@@ -9,14 +9,18 @@ import './Main.css';
 
 const Main = () => {
 
-    const conditionStore = useSelector((state) => state.conditionStore);
+    const store = useSelector((state) => state);
 
     return (
         <div className='main'>
 
-            {conditionStore.isAddFriendTab ? <SideBarAddFriend /> : conditionStore.isFriendReqTab ? <SideBarFriendRequest /> : <SideBar />}
-            {/* <ChatBox /> */}
-            <WhatsAppScreen />
+            {store.conditionStore.isAddFriendTab ? <SideBarAddFriend /> : store.conditionStore.isFriendReqTab ? <SideBarFriendRequest /> : <SideBar />}
+            {
+                store.chatStore.friendUID ?
+                    <ChatBox />
+                    :
+                    <WhatsAppScreen />
+            }
         </div>
     )
 }

@@ -1,6 +1,5 @@
 const INITIAL_STATE = {
   user: {},
-  friendRequest: '',
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -13,7 +12,6 @@ export default (state = INITIAL_STATE, action) => {
     case 'NOTLOGGEDIN':
       return {
         user: {},
-        friendRequest: '',
       };
     default:
       return state;

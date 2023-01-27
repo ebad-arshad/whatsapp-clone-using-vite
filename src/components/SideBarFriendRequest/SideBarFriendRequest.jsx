@@ -30,7 +30,6 @@ const SideBarFriendRequest = () => {
 
 
     const isAddedOrDenied = async (status, id) => {
-        console.log(status);
         if (status === 'added') {
             const userRef = doc(db, "users", userStore.user.uid);
             const friendRef = doc(db, "users", id);

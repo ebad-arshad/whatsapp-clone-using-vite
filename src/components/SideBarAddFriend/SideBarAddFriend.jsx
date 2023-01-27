@@ -13,6 +13,7 @@ const SideBarAddFriend = () => {
     const [searchFriend, setSearchFriend] = useState(false);
     const [fetchedData, setFetchedData] = useState();
     const [noUserFound, setNoUserFound] = useState(true);
+    const [message, setMessage] = useState('');
 
     const userStore = useSelector((state) => state.userStore)
 
@@ -21,13 +22,17 @@ const SideBarAddFriend = () => {
 
         const q = query(collection(db, "users"), where('phoneNumber', "==", `+${value}`));
         const querySnapshot = await getDocs(q);
+        let flag = false;
         querySnapshot.forEach((doc) => {
-            if (doc.id !== userStore.user.uid && !doc.data().friends.includes(userStore.user.uid)) {
+            if (doc.data().friends.includes(userStore.user.uid)) flag = true;
+            else if (doc.id !== userStore.user.uid && !doc.data().friends.includes(userStore.user.uid)) {
                 setSearchFriend(true)
                 setFetchedData({ id: doc.id, data: doc.data() })
                 setNoUserFound(true)
+                flag = false;
             }
         });
+        return flag;
     }
 
     const dispatch = useDispatch();
@@ -38,7 +43,8 @@ const SideBarAddFriend = () => {
         if (inputVal) {
             if (inputVal.length === 12 && flag) {
                 setNoUserFound(false)
-                await fetchData(inputVal)
+                const flag = await fetchData(inputVal)
+                !flag ? setMessage('No user found') : setMessage('User already added')
             }
             else if (status === 'requested') {
                 setInputVal('');
@@ -72,7 +78,7 @@ const SideBarAddFriend = () => {
                     <div className="addFriendInput"><AiOutlineSearch onClick={() => friendSearched(true)} /><input value={inputVal} className='friendSearch' onChange={gettingPhoneNumber} type="number" placeholder='92xxxxxxxxxx' /></div>
                 </form>
                 {searchFriend && <UserSearched data={fetchedData} friendSearched={friendSearched} />}
-                {!noUserFound && <div className="noUserFound">No User Found</div>}
+                {!noUserFound && <div className="noUserFound">{message}</div>}
             </div>
         </div>
     )

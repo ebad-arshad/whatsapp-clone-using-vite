@@ -15,19 +15,19 @@ const SideBarList = () => {
             if (userStore.user.friends.length !== 0) {
                 const q = query(collection(db, "users"), where("friends", "array-contains", userStore.user.uid));
                 onSnapshot(q, (querySnapshot) => {
+                    setFriendData([])
                     querySnapshot.forEach((doc) => {
                         setFriendData((e) => [...e, { id: doc.id, data: doc.data() }])
                     });
                 });
             }
         }
-        setFriendData([]);
     }, [JSON.stringify(userStore.user.friends)])
 
     return (
         <div className='sideBarList'>
-            {friendData.map((v) => (
-                <SideBarFriend key={v.id} name={v.data.name} profile={v.data.profile} uid={v.id} />
+            {friendData.map((v, i) => (
+                <SideBarFriend key={i} name={v.data.name} profile={v.data.profile} uid={v.id} />
             ))}
         </div>
     )
