@@ -23,7 +23,7 @@ const Chat = ({ friendUID, uid }) => {
 
   return (
     <div className='chat'>
-      {chats.map((msg, i) => <div key={i} className={msg.senderUID === uid ? 'user' : 'friend'}><p>{msg.message}</p><p>3:24 pm</p></div>)}
+      {chats.map((msg, i) => <div key={i} className={msg.senderUID === uid ? 'user' : 'friend'}><p>{msg.message}</p><p>{msg.messageTime}</p></div>)}
     </div>
   )
 }

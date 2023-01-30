@@ -1,6 +1,6 @@
 import userStore from "./user";
 import conditionStore from "./conditions";
-import chatStore from "./chatScreenData";
+import chatStore from "./chat";
 import { configureStore } from "@reduxjs/toolkit";
 
 const store = configureStore({
